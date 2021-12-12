@@ -9,6 +9,12 @@ import { MaterialModule } from './material.module';
 import { MemberFormComponent } from './member-form/member-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ConfirmDialogModule } from './confirm-dialog.module';
+import { LayoutComponent } from './layout/layout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ArtilcesComponent } from './artilces/artilces.component';
+import { FirebaseModule } from './firebase/firebase.module';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -16,7 +22,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   declarations: [
     AppComponent,
     MembreListComponent,
-    MemberFormComponent
+    MemberFormComponent,
+    LayoutComponent,
+    DashboardComponent,
+    ArtilcesComponent,
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -24,12 +35,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    FirebaseModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ConfirmDialogModule
 
 
 
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
