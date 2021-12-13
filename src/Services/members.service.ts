@@ -1,52 +1,57 @@
-//import { HttpClient } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GLOBAL } from 'src/app/app-config';
-import { Member, Members } from 'src/Models/member.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Members } from 'src/Models/member.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MembersService {
 
-  //public tabb:Members[]=[];
-  tab = GLOBAL._db.members;
+
+  public tabb: Members[] = [];
 
 
+  public edittab: any = [];
+  public tab = GLOBAL._db.members;
   constructor(private httpClient: HttpClient) { }
-
-  saveMember(membreToSave: Member): Promise<Member> {
-    //return this.httpClient.post<Members>('http://localhost:9000/MEMBRE-SERVICE/membres/etudiant',member).toPromise();
-   // this.httpClient.post<Member>('linkToRestApi', membreToSave).toPromise();//pour accéder au backend
-    const member = { ...membreToSave, }//extraire les elements de l'objet
-    membreToSave.id = member.id ?? Math.ceil(Math.random() * 10000).toString();//if short bil ?? walet
-    membreToSave.createdDate = member.createdDate ?? new Date().toISOString();//toISoSTRING FORMAT DE DATE simplifié
-    this.tab = [membreToSave, ...this.tab.filter((item: { id: string; }) => item.id !== member.id)]
-    return new Promise(resolve => resolve(membreToSave)); // promise andha block try/catch , il try hiya resolve ken kol chay mriguel traja3lik resultat sinon  block catch hiya reject twali 
-
+  saveMember(member: Members): Promise<Members> {
+    return this.httpClient.post<Members>('http://localhost:9000/MEMBRE-SERVICE/membres/etudiant', member).toPromise();
+    /*const memberToSave =  {...member,}
+    memberToSave.id = member.id??Math.ceil(Math.random()*10000).toString();
+    memberToSave.createDate = member.createDate??new Date().toString();
+    this.tab=[memberToSave,...this.tab.filter(item => item.id!==memberToSave.id)];
+    return new Promise(resolve => resolve(memberToSave));*/
   }
-  getMemberById(id: string): Promise<Member> {
-    //this.httpClient.post<Member>('linkToRestApi').toPromise();//pour accéder au backend
-    return new Promise(resolve => resolve(this.tab.filter((item: { id: string; }) => item.id == id)[0] ?? null));
-    // ken il9a il id yarmi il resultat de filter ili hiya deja traja3lik tableau  fil position 0 (ligne1) 
+
+  getMemberById(id: string): Promise<Members> {
+    return this.httpClient.get<Members>('http://localhost:9000/MEMBRE-SERVICE/membre/' + id).toPromise();
+    /*return new Promise(resolve => resolve(
+      this.tab.filter(item => item.id===id)[0]??null));*/
   }
-  deleteMember(id: string): Promise<void> {
-    //this.httpClient.delete<void houwa type de retour>('linkToRestApi').toPromise();//pour accéder au backend
-    /*this.tab = this.tab.filter((item: { id: string; }) => item.id !== id);
-    return new Promise(resolve => resolve())*/
+
+  RemoveMemberById(id: string): Promise<void> {
     return this.httpClient.delete<void>('http://localhost:9000/MEMBRE-SERVICE/membres/' + id).toPromise();
 
+    /*this.tab=this.tab.filter(item => item.id!=id);
+    return new Promise(resolve => resolve());*/
+
   }
-  GetAllMembers(): Promise<Members[]> {
-    //return this.httpClient.get<Member[]>("linktoapi").toPromise();
-    //return new Promise(resolve => resolve(this.tab));
+
+  /*GetALLMembers(): Promise<Member[]> {
+    //this.httpClient.get<Member>('linkToRestAPI',member).toPromise();
+    return new Promise(resolve => resolve(this.tab));
+
+  }*/
+  GetALL(): Promise<Members[]> {
     return this.httpClient.get<any[]>('http://localhost:9000/MEMBRE-SERVICE/membres').toPromise();
+
   }
+  EditMember(id: any, member: Members): Promise<Members> {
+    return this.httpClient.put<Members>('http://localhost:9000/MEMBRE-SERVICE/membres/etudiant/' + id, member).toPromise();
 
 
-
-
-
-
+  }
 
 }

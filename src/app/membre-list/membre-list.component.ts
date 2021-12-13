@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Member } from 'src/Models/member.model';
+import { Member, Members } from 'src/Models/member.model';
 import { MembersService } from 'src/Services/members.service';
+
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 
@@ -16,9 +17,9 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 export class MembreListComponent implements OnInit {
 
   //any : quelque soit le type
-  public dataSource: MatTableDataSource<Member>;
+  public dataSource: MatTableDataSource<Members>;
   //3al 9ad ma3andik columns tzidou fi displayedcolumns ==9adeh 3andik min ngcontainer fil html
-  displayedColumns: string[] = ['cin', 'nom', 'dateNaissance', 'cv', 'prenom', 'Actions'];
+  displayedColumns: string[] = ["cin", "prenom", "nom", "email", "dateNaissance", "cv", "actions"];
 
   //fil constructeur na3mel instance min il service : ma3neha injectit il service 
   constructor(private ms: MembersService, private router: Router, private dialog: MatDialog) {
@@ -32,10 +33,8 @@ export class MembreListComponent implements OnInit {
       isDeleted => {
         if (isDeleted) {
           //exécute de code de la suppression 
-          this.ms.deleteMember(id).then(() => {
-            this.GetMembers();
-
-          });
+          console.log(id);
+          this.ms.RemoveMemberById(id).then(() => this.GetMembers());
 
         }
       }
@@ -48,7 +47,14 @@ export class MembreListComponent implements OnInit {
     //.data  accéder au données de table de type MatTableDataSource
     //this.dataSource.data = data
     // })
-    this.ms.GetAllMembers();
+
+    //this.ms.GetALL().then((data)=>this.dataSource.data=data);
+    //console.log(this.dataSource.data);
+    this.ms.GetALL()
+      .then((data) => {
+        this.dataSource.data = data;
+      });
+    //console.log(this.dataSource.data);
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

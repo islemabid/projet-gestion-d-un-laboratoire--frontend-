@@ -20,11 +20,15 @@ export class MemberFormComponent implements OnInit {
   initform(item: any): void {
     this.form = new FormGroup({
       //item? .attribut : yefhem ken si item.attribut fih valeur ye5ouha sinon ye5ou null
-      cin: new FormControl(item?.cin, [Validators.required]),
-      name: new FormControl(item?.name, [Validators.required]),
-      cv: new FormControl(item?.cv, []),
-      type: new FormControl(item?.type, [Validators.required]),
 
+
+      cin: new FormControl(item?.cin, [Validators.required]),
+      nom: new FormControl(item?.nom, [Validators.required]),
+      cv: new FormControl(item?.cv, [Validators.required]),
+      prenom: new FormControl(item?.prenom, [Validators.required]),
+      email: new FormControl(item?.email, [Validators.required]),
+      photo: new FormControl(item?.photo),
+      dateNaissance: new FormControl(item?.dateNaissance, [Validators.required])
 
     })
   }
@@ -46,8 +50,11 @@ export class MemberFormComponent implements OnInit {
       // je suis dans edit 
       //mech tjib il membre à modifier w t9olou jibli il formulaire fih les données de ce member
       this.ms.getMemberById(this.currentid).then(
-        (item: Member) => { this.item1 = item; this.initform(this.item1) }
-      )
+        (item) => {
+          this.item1 = item; this.initform(this.item1);
+          console.log(item);
+        }
+      );
 
 
     }
