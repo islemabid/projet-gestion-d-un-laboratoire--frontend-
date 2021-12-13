@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Member } from 'src/Models/member.model';
 import { MembersService } from 'src/Services/members.service';
 
 

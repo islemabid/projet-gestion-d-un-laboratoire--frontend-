@@ -23,7 +23,7 @@ export class MembreListComponent implements OnInit {
 
   //fil constructeur na3mel instance min il service : ma3neha injectit il service 
   constructor(private ms: MembersService, private router: Router, private dialog: MatDialog) {
-    this.dataSource = new MatTableDataSource(this.ms.tab);
+    this.dataSource = new MatTableDataSource(this.ms.tabb);
   }
   delete(id: string) {
 
