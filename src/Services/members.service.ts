@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GLOBAL } from 'src/app/app-config';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Members } from 'src/Models/member.model';
 
 

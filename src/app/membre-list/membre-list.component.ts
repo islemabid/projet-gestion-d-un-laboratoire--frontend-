@@ -17,9 +17,9 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 export class MembreListComponent implements OnInit {
 
   //any : quelque soit le type
-  public dataSource: MatTableDataSource<Members>;
+  dataSource: MatTableDataSource<Members> = new MatTableDataSource(this.ms.tabb);
   //3al 9ad ma3andik columns tzidou fi displayedcolumns ==9adeh 3andik min ngcontainer fil html
-  displayedColumns: string[] = ["cin", "prenom", "nom", "email", "dateNaissance", "cv", "actions"];
+  displayedColumns: string[] = ["cin", "prenom", "nom", "email", "dateNaissance", "cv", "Actions"];
 
   //fil constructeur na3mel instance min il service : ma3neha injectit il service 
   constructor(private ms: MembersService, private router: Router, private dialog: MatDialog) {

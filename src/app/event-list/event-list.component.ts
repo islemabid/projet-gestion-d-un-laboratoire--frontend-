@@ -2,20 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Publications } from 'src/Models/article.model';
-import { PublicationsService } from 'src/Services/publications.service';
+import { Events } from 'src/Models/evenement.model';
+import { EventService } from 'src/Services/event.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-artilces',
-  templateUrl: './artilces.component.html',
-  styleUrls: ['./artilces.component.css']
+  selector: 'app-event-list',
+  templateUrl: './event-list.component.html',
+  styleUrls: ['./event-list.component.css']
 })
-export class ArtilcesComponent implements OnInit {
-  dataSource: MatTableDataSource<Publications> = new MatTableDataSource(this.ms.tab1);
-  displayedColumns: string[] = ["type", "titre", "lien", "Sourcepdf", "date", "Actions"];
-  constructor(private ms: PublicationsService, private router: Router, private dialog: MatDialog) {
-    this.dataSource = new MatTableDataSource(this.ms.tab1);
+export class EventListComponent implements OnInit {
+
+  dataSource: MatTableDataSource<Events> = new MatTableDataSource(this.ms.tab3);
+  displayedColumns: string[] = ["titre", "lieu", "date", "Actions"];
+  constructor(private ms: EventService, private router: Router, private dialog: MatDialog) {
+    this.dataSource = new MatTableDataSource(this.ms.tab3);
   }
 
   delete(id: string) {
@@ -27,14 +28,14 @@ export class ArtilcesComponent implements OnInit {
         if (isDeleted) {
           //exécute de code de la suppression 
           console.log(id);
-          this.ms.RemovePubById(id).then(() => this.GetPubs());
+          this.ms.RemoveEventById(id).then(() => this.GetEvents());
 
         }
       }
 
     )
   }
-  GetPubs(): void {
+  GetEvents(): void {
 
     this.ms.GetALL()
       .then((data) => {
@@ -51,8 +52,9 @@ export class ArtilcesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.GetPubs();
+    this.GetEvents();
   }
+
 
 
 }

@@ -15,6 +15,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArtilcesComponent } from './artilces/artilces.component';
 import { FirebaseModule } from './firebase/firebase.module';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ArticleFormComponent } from './article-form/article-form.component';
+import { OutilListComponent } from './outil-list/outil-list.component';
+import { OutilFormComponent } from './outil-form/outil-form.component';
+import { EventFormComponent } from './event-form/event-form.component';
+import { EventListComponent } from './event-list/event-list.component';
 
 
 
@@ -27,6 +33,11 @@ import { LoginComponent } from './login/login.component';
     DashboardComponent,
     ArtilcesComponent,
     LoginComponent,
+    ArticleFormComponent,
+    OutilListComponent,
+    OutilFormComponent,
+    EventFormComponent,
+    EventListComponent,
 
   ],
   imports: [
@@ -34,10 +45,9 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule,
     FirebaseModule,
     MaterialModule,
-    FlexLayoutModule,
+    FlexLayoutModule, HttpClientModule,
     ConfirmDialogModule
 
 

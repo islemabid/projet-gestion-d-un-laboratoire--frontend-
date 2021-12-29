@@ -7,29 +7,38 @@
 <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="cin">
-    <th mat-header-cell class="px-12" *matHeaderCellDef>Id </th>
+    <th mat-header-cell class="px-12" *matHeaderCellDef> CIN </th>
     <td mat-cell class="px-12" *matCellDef="let element"> {{element.cin}} </td>
   </ng-container>
+
+  <!-- Weight Column -->
   <ng-container matColumnDef="nom">
-    <th mat-header-cell class="px-12" *matHeaderCellDef>Cin </th>
-    <td mat-cell class="px-12" *matCellDef="let element"> {{element.nom}} </td>
+    <th mat-header-cell *matHeaderCellDef> NOM </th>
+    <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
   </ng-container>
+
+  <!-- Symbol Column -->
   <ng-container matColumnDef="prenom">
-    <th mat-header-cell class="px-12" *matHeaderCellDef>name </th>
+    <th mat-header-cell class="px-12" *matHeaderCellDef> PRENOM </th>
     <td mat-cell class="px-12" *matCellDef="let element"> {{element.prenom}} </td>
   </ng-container>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell class="px-12" *matHeaderCellDef> EMAIL </th>
+    <td mat-cell class="px-12" *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
   <ng-container matColumnDef="dateNaissance">
-    <th mat-header-cell class="px-12" *matHeaderCellDef>createdDate </th>
-    <td mat-cell class="px-12" *matCellDef="let element"> {{element.dateNaissance}} </td>
+    <th mat-header-cell class="px-12" *matHeaderCellDef> DATE NAISSANCE</th>
+    <td mat-cell class="px-12" *matCellDef="let element"> {{element.dateNaissance }} </td>
   </ng-container>
   <ng-container matColumnDef="cv">
-    <th mat-header-cell class="px-12" *matHeaderCellDef>cv </th>
+    <th mat-header-cell class="px-12" *matHeaderCellDef> CV </th>
     <td mat-cell class="px-12" *matCellDef="let element">
       <a [href]="element.cv" target="_blank">
         <mat-icon>picture_as_pdf</mat-icon>
       </a>
-    </td>
+
   </ng-container>
+
 
   <!--stickyEnd ma3neh dima ijiblik il column hethi dima fil le5er-->
   <ng-container matColumnDef="Actions" stickyEnd>

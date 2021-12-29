@@ -2,20 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Publications } from 'src/Models/article.model';
-import { PublicationsService } from 'src/Services/publications.service';
+import { Outils } from 'src/Models/outil.model';
+import { OutilService } from 'src/Services/outil.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-artilces',
-  templateUrl: './artilces.component.html',
-  styleUrls: ['./artilces.component.css']
+  selector: 'app-outil-list',
+  templateUrl: './outil-list.component.html',
+  styleUrls: ['./outil-list.component.css']
 })
-export class ArtilcesComponent implements OnInit {
-  dataSource: MatTableDataSource<Publications> = new MatTableDataSource(this.ms.tab1);
-  displayedColumns: string[] = ["type", "titre", "lien", "Sourcepdf", "date", "Actions"];
-  constructor(private ms: PublicationsService, private router: Router, private dialog: MatDialog) {
-    this.dataSource = new MatTableDataSource(this.ms.tab1);
+export class OutilListComponent implements OnInit {
+  dataSource: MatTableDataSource<Outils> = new MatTableDataSource(this.ms.tab2);
+  displayedColumns: string[] = ["source", "date", "Actions"];
+  constructor(private ms: OutilService, private router: Router, private dialog: MatDialog) {
+    this.dataSource = new MatTableDataSource(this.ms.tab2);
   }
 
   delete(id: string) {
@@ -27,14 +27,14 @@ export class ArtilcesComponent implements OnInit {
         if (isDeleted) {
           //exécute de code de la suppression 
           console.log(id);
-          this.ms.RemovePubById(id).then(() => this.GetPubs());
+          this.ms.RemoveToolById(id).then(() => this.GetTools());
 
         }
       }
 
     )
   }
-  GetPubs(): void {
+  GetTools(): void {
 
     this.ms.GetALL()
       .then((data) => {
@@ -51,8 +51,9 @@ export class ArtilcesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.GetPubs();
+    this.GetTools();
   }
+
 
 
 }

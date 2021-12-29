@@ -6,10 +6,7 @@
 <mat-label>Filter</mat-label>
 <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="type">
-        <th mat-header-cell class="px-12" *matHeaderCellDef> type </th>
-        <td mat-cell class="px-12" *matCellDef="let element"> {{element.type}} </td>
-    </ng-container>
+
 
     <!-- Weight Column -->
     <ng-container matColumnDef="titre">
@@ -18,14 +15,11 @@
     </ng-container>
 
     <!-- Symbol Column -->
-    <ng-container matColumnDef="lien">
-        <th mat-header-cell class="px-12" *matHeaderCellDef> lien </th>
-        <td mat-cell class="px-12" *matCellDef="let element"> {{element.lien}} </td>
+    <ng-container matColumnDef="lieu">
+        <th mat-header-cell class="px-12" *matHeaderCellDef> lieu </th>
+        <td mat-cell class="px-12" *matCellDef="let element"> {{element.lieu}} </td>
     </ng-container>
-    <ng-container matColumnDef="Sourcepdf">
-        <th mat-header-cell class="px-12" *matHeaderCellDef> Sourcepdf </th>
-        <td mat-cell class="px-12" *matCellDef="let element"> {{element.Sourcepdf}} </td>
-    </ng-container>
+
     <ng-container matColumnDef="date">
         <th mat-header-cell class="px-12" *matHeaderCellDef> Date</th>
         <td mat-cell class="px-12" *matCellDef="let element"> {{element.date }} </td>
