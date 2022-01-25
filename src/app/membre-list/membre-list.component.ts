@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Member, Members } from 'src/Models/member.model';
+import { Members } from 'src/Models/member.model';
 import { MembersService } from 'src/Services/members.service';
 
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';

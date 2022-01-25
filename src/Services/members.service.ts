@@ -16,8 +16,16 @@ export class MembersService {
   public edittab: any = [];
   public tab = GLOBAL._db.members;
   constructor(private httpClient: HttpClient) { }
-  saveMember(member: Members): Promise<Members> {
+  saveEtudiant(member: Members): Promise<Members> {
     return this.httpClient.post<Members>('http://localhost:9000/MEMBRE-SERVICE/membres/etudiant', member).toPromise();
+    /*const memberToSave =  {...member,}
+    memberToSave.id = member.id??Math.ceil(Math.random()*10000).toString();
+    memberToSave.createDate = member.createDate??new Date().toString();
+    this.tab=[memberToSave,...this.tab.filter(item => item.id!==memberToSave.id)];
+    return new Promise(resolve => resolve(memberToSave));*/
+  }
+  saveEnseignant(member: Members): Promise<Members> {
+    return this.httpClient.post<Members>('http://localhost:9000/MEMBRE-SERVICE/membres/enseignant', member).toPromise();
     /*const memberToSave =  {...member,}
     memberToSave.id = member.id??Math.ceil(Math.random()*10000).toString();
     memberToSave.createDate = member.createDate??new Date().toString();
@@ -49,7 +57,8 @@ export class MembersService {
 
   }
   EditMember(id: any, member: Members): Promise<Members> {
-    return this.httpClient.put<Members>('http://localhost:9000/MEMBRE-SERVICE/membres/etudiant/' + id, member).toPromise();
+    return this.httpClient.put<Members>('http://localhost:9000/MEMBRE-SERVICE/membres/etudiant/' + id,
+      member).toPromise();
 
 
   }

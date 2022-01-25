@@ -26,7 +26,14 @@ export class MemberFormComponent implements OnInit {
       prenom: new FormControl(item?.prenom, [Validators.required]),
       email: new FormControl(item?.email, [Validators.required]),
       photo: new FormControl(item?.photo),
-      dateNaissance: new FormControl(item?.dateNaissance, [Validators.required])
+      dateNaissance: new FormControl(item?.dateNaissance, [Validators.required]),
+      diplome: new FormControl(item?.diplome),
+      inscription: new FormControl(item?.inscription),
+      encadrant: new FormControl(item?.encadrant),
+      grade: new FormControl(item?.grade),
+      etablissement: new FormControl(item?.etablissement)
+
+
 
 
 
@@ -38,7 +45,7 @@ export class MemberFormComponent implements OnInit {
     //:ma3neha kol element fil item1 twali bil element ili ktebtou jdid fil form
 
     //.then na3mlouha wa9t c'et bon il resultat fil resolve w nhebou ya3mel 7aja o5ra , 
-    this.ms.saveMember(saveMember)
+    this.ms.saveEtudiant(saveMember)
       .then((data) => {
         this.router.navigate(['./members'])
 
